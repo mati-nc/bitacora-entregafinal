@@ -1,0 +1,45 @@
+
+function validateForm() {
+  const name = document.getElementById('nombre').value;
+  const correo = document.getElementById('correo').value;
+  let isValid = true;
+
+ 
+  if(name.trim() === '') {
+    showError('empty-name', 'El nombre es obligatorio');
+    isValid = false;
+  } else {
+    hideError('empty-name');
+  }
+
+
+  if(correo.trim() === '') {
+    showError('empty-correo', 'El campo correo es obligatorio');
+    isValid = false;
+  } else {
+    hideError('empty-correo');
+  }
+
+  return isValid;
+}
+
+
+function showError(fieldId, message) {
+  const errorElement = document.getElementById(fieldId + '-error');
+  errorElement.textContent = "❌ " + message;
+  errorElement.style.display = 'block';
+}
+
+function hideError(fieldId) {
+  const errorElement = document.getElementById(fieldId + '-error');
+  errorElement.style.display = 'none';
+}
+
+
+const btnEnviar = document.getElementById('btnEnviar');
+btnEnviar.addEventListener('click', function(event) {
+  event.preventDefault;
+  if(validateForm()) {
+    document.getElementById('mensajeok').innerText = "Tu mensaje se envió correctamente!";
+  }
+});
